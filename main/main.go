@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 func main() {
 
 	//num1 := 2
@@ -400,7 +402,69 @@ func main() {
 	//*p = 999
 	//fmt.Println(num)
 
+	// case后面不用编写break, 不会出现case穿透问题
+	// 如果想让case穿透,必须在case语句块最后添加fallthrough关键
+	//switch num := 3; num {
+	//case 1:
+	//	fallthrough
+	//case 2:
+	//	fallthrough
+	//case 3:
+	//	fallthrough
+	//case 4:
+	//	fallthrough
+	//case 5:
+	//	fmt.Println("工作日")
+	//case 6:
+	//	fallthrough
+	//case 7:
+	//	fmt.Println("非工作日")
+	//default:
+	//	fmt.Println("Other...")
+	//}
+
+	// case后面不仅仅可以放常量,还可以放变量和表达式
+	//value := 2
+	//switch num := 1; num {
+	//case value: // 变量
+	//	fmt.Println("num等于value")
+	//default:
+	//	fmt.Println("num不等于value")
+	//}
+
+	//switch num := 1; num {
+	//case getValue(): // 函数
+	//	fmt.Println("num等于value")
+	//default:
+	//	fmt.Println("num不等于value")
+	//}
+
+	//switch num := 18; {
+	//case num >= 0 && num <= 10: // 表达式
+	//	fmt.Println("num是一个0~10之间的数")
+	//case num > 10 && num <= 20:
+	//	fmt.Println("num是一个11~20之间的数")
+	//default:
+	//	fmt.Println("num是一个大于20的数")
+	//}
+
+	// case后面定义变量不用添加{}明确作用于范围
+	switch num := 1; num {
+	case 1:
+		value := 10 // 不会报错
+		fmt.Println(value)
+		fmt.Println(num)
+		value = 120 // 不会报错
+		fmt.Println(value)
+	default:
+		fmt.Println("Other...")
+	}
+
 }
+
+//func getValue() int {
+//	return 1
+//}
 
 // 五言绝句
 //// 定义一个词库
