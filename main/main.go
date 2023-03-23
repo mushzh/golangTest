@@ -433,7 +433,7 @@ func main() {
 	//}
 
 	//switch num := 1; num {
-	//case getValue(): // 函数
+	//case getValue(): // 函数①
 	//	fmt.Println("num等于value")
 	//default:
 	//	fmt.Println("num不等于value")
@@ -449,19 +449,91 @@ func main() {
 	//}
 
 	// case后面定义变量不用添加{}明确作用于范围
-	switch num := 1; num {
-	case 1:
-		value := 10 // 不会报错
-		fmt.Println(value)
-		fmt.Println(num)
-		value = 120 // 不会报错
-		fmt.Println(value)
-	default:
-		fmt.Println("Other...")
-	}
+	//switch num := 1; num {
+	//case 1:
+	//	value := 10 // 不会报错
+	//	fmt.Println(value)
+	//	fmt.Println(num)
+	//	value = 120 // 不会报错
+	//	fmt.Println(value)
+	//default:
+	//	fmt.Println("Other...")
+	//}
 
+	//// 配列を定義する
+	//arr := [8]int{1, 3, 5, 7, 8, 10, 18, 12}
+	//// i は、現在のトラバーサルのインデックスを配列に保存するために使用されます
+	//// v は、現在トラバースされている値を配列に保存するために使用されます
+	//for i, v := range arr {
+	//	fmt.Println(i, v)
+	//}
+
+	// Go语言中 值类型 有: int系列、float系列、bool、string、数组、结构体
+	// 值类型通常在栈中分配存储空间
+	// 值类型作为函数参数传递, 是拷贝传递
+	// 在函数体内修改值类型参数, 不会影响到函数外的值②
+	//arr := [3]int{1, 3, 5}
+	//change(arr)
+	//fmt.Println(arr) // 1, 3, 5
+
+	// Go语言中 引用类型 有: 指针、slice、map、channel
+	// 引用类型通常在堆中分配存储空间
+	// 引用类型作为函数参数传递,是引用传递
+	// 在函数体内修改引用类型参数,会影响到函数外的值③
+	//arr := []int{1, 3, 5}
+	//change(arr)
+	//fmt.Println(arr) // 1, 8, 5
+
+	// 在函数体内修改引用类型参数,会影响到函数外的值④
+	//mp := map[string]string{"name": "lnj", "age": "33"}
+	//change(mp)
+	//fmt.Println(mp["name"]) // zs
+
+	// 一般的な場合、私たちはほとんどグローバルな匿名関数を使用せず、ほとんどの場合、ローカルな匿名関数を使用します。
+	// 匿名関数は、直接呼び出す、変数に保存する、引数として使用する、または戻り値として返すことができます。
+	// 変数に保存する
+	//a := func(s string) {
+	//	fmt.Println(s)
+	//}
+	//a("hello 変数")
+	// 引数として使用する⑤
+	//test(func(s string) {
+	//	fmt.Println(s)
+	//})
+
+	// 戻り値として返す⑥
+	res := test()
+	res(10, 20)
 }
 
+// 戻り値として返す⑥
+func test() func(int, int) {
+	return func(a int, b int) {
+		fmt.Println(a + b)
+	}
+}
+
+// 引数として使用する⑤
+//func test(f func(s string)) {
+//	f("hello go")
+//}
+
+// 在函数体内修改值类型参数, 不会影响到函数外的值②
+//func change(arr [3]int) {
+//	arr[1] = 8
+//}
+
+// 在函数体内修改引用类型参数,会影响到函数外的值③
+//func change(arr []int) {
+//	arr[1] = 8
+//}
+
+// 在函数体内修改引用类型参数,会影响到函数外的值④
+//func change(mp map[string]string) {
+//	mp["name"] = "zs"
+//}
+
+//①
 //func getValue() int {
 //	return 1
 //}
