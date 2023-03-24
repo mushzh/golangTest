@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func main() {
 
 	//num1 := 2
@@ -502,16 +500,58 @@ func main() {
 	//})
 
 	// 戻り値として返す⑥
-	res := test()
-	res(10, 20)
+	//res := test()
+	//res(10, 20)
+
+	// 只要闭包还在使用外界的变量, 那么外界的变量就会一直存在⑦
+	//res := addUpper() // 执行addUpper函数,得到一个闭包
+	//fmt.Println(res())
+	//fmt.Println(res())
+	//fmt.Println(res())
+	//fmt.Println(res())
+
+	//defer fmt.Println("我是第一个被注册的")   // 3
+	//fmt.Println("main函数中调用的Println") // 1
+	//defer fmt.Println("我是第二个被注册的")   // 2
+
+	// 切片源码
+	//type slice struct{
+	//	array unsafe.Pointer // 指向底层数组指针
+	//	len int // 切片长度(保存了多少个元素)
+	//	cap int // 切片容量(可以保存多少个元素)
+	//}
+
+	//var arr = [5]int{1, 3, 5, 7, 9}
+	//// 从数组0下标开始取,一直取到2下标前面一个索引
+	//var sce = arr[0:2]
+	//fmt.Println(sce) // [1 3]
+	//// 切片len = 结束位置 - 开始位置
+	//fmt.Println(len(sce)) // 2 - 0 = 2
+	//fmt.Println(cap(sce)) // 5 - 0 = 5
+	//// 数组地址就是数组首元素的地址
+	//fmt.Printf("%p\n", &arr)    // 0xc00000e450
+	//fmt.Printf("%p\n", &arr[0]) // 0xc00000e450
+	//// 切片地址就是数组中指定的开始元素的地址
+	//// arr[0:2]开始地址为0, 所以就是arr[0]的地址
+	//fmt.Printf("%p\n", sce) // 0xc00000e450
+
 }
 
+// 只要闭包还在使用外界的变量, 那么外界的变量就会一直存在⑦
+//func addUpper() func() int {
+//	x := 1
+//	return func() int {
+//		x++ // 匿名函数中用到了addUpper中的x,所以这是一个闭包
+//		return x
+//	}
+//}
+
 // 戻り値として返す⑥
-func test() func(int, int) {
-	return func(a int, b int) {
-		fmt.Println(a + b)
-	}
-}
+//func test() func(int, int) {
+//	return func(a int, b int) {
+//		fmt.Println(a + b)
+//	}
+//}
 
 // 引数として使用する⑤
 //func test(f func(s string)) {
