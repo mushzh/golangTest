@@ -535,6 +535,23 @@ func main() {
 	//// arr[0:2]开始地址为0, 所以就是arr[0]的地址
 	//fmt.Printf("%p\n", sce) // 0xc00000e450
 
+	//var arr = [5]int{1, 3, 5, 7, 9}
+	//// 同时指定开始位置和结束位置
+	//var sce1 = arr[0:2]
+	//fmt.Println(sce1) // [1 3]
+	//
+	//// 只指定结束位置
+	//var sce3 = arr[:2]
+	//fmt.Println(sce3) // [1 3]
+	//
+	//// 只指定开始位置
+	//var sce2 = arr[0:]
+	//fmt.Println(sce2) // [1 3 5 7 9]
+	//
+	//// 都不指定
+	//var sce4 = arr[:]
+	//fmt.Println(sce4) // [1 3 5 7 9]
+
 }
 
 // 只要闭包还在使用外界的变量, 那么外界的变量就会一直存在⑦
