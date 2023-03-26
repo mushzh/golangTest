@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 func main() {
 
 	//num1 := 2
@@ -552,6 +554,55 @@ func main() {
 	//var sce4 = arr[:]
 	//fmt.Println(sce4) // [1 3 5 7 9]
 
+	//方式二: 通过make函数创建make(类型, 长度, 容量)
+	//	内部会先创建一个数组, 然后让切片指向数组
+	//	如果没有指定容量,那么容量和长度一样
+	// 第一个参数: 指定切片数据类型
+	// 第二个参数: 指定切片的长度
+	// 第三个参数: 指定切片的容量
+	//var sce = make([]int, 3, 5)
+	//fmt.Println(sce)      // [0 0 0]
+	//fmt.Println(len(sce)) // 3
+	//fmt.Println(cap(sce)) // 5
+	/*
+	   内部实现原理
+	   var arr = [5]int{0, 0, 0}
+	   var sce = arr[0:3]
+	*/
+
+	//方式三:通过Go提供的语法糖快速创建　　シンタックスシュガー
+	//	和创建数组一模一样, 但是不能指定长度
+	//	通过该方式创建时, 切片的长度和容量相等
+	//var sce = []int{1, 3, 5}
+	//fmt.Println(sce)      // [1 3 5]
+	//fmt.Println(len(sce)) // 3
+	//fmt.Println(cap(sce)) // 3
+	//
+	//fmt.Println("追加データ前：", sce)      //  [1 3 5]
+	//fmt.Println("追加データ前：", len(sce)) // 3
+	//fmt.Println("追加データ前：", cap(sce)) // 3
+	//fmt.Printf("追加データ前：%p\n", sce)   // 0xc000010120
+	//// 第一个参数: 需要把数据追加到哪个切片中
+	//// 第二个参数: 需要追加的数据, 可以是一个或多个
+	//sce = append(sce, 666)
+	//fmt.Println("追加データ前：", sce)      //  [1 3 5 666]
+	//fmt.Println("追加データ前：", len(sce)) // 4
+	//fmt.Println("追加データ前：", cap(sce)) // 6   append函数每次给切片扩容都会按照原有切片容量*2的方式扩容
+	//fmt.Printf("追加データ前：%p\n", sce)   // 0xc00000e4b0
+
+	// 格式: copy(目标切片, 源切片) , 会将源切片中数据拷贝到目标切片中
+	// copy函数在拷贝数据时永远以小容量为准
+
+	//可以通过切片再次生成新的切片, 两个切片底层指向同一数组
+	arr := [5]int{1, 3, 5, 7, 9}
+	sce1 := arr[0:4]
+	sce2 := sce1[0:3]
+	fmt.Println(sce1) // [1 3 5 7]
+	fmt.Println(sce2) // [1 3 5]
+	// 由于底层指向同一数组, 所以修改sce2会影响sce1
+	sce2[1] = 666
+	fmt.Println(sce1) // [1 666 5 7]
+	fmt.Println(sce2) // [1 666 5]
 }
 
 // 只要闭包还在使用外界的变量, 那么外界的变量就会一直存在⑦
