@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func main() {
 
 	//num1 := 2
@@ -594,15 +592,34 @@ func main() {
 	// copy函数在拷贝数据时永远以小容量为准
 
 	//可以通过切片再次生成新的切片, 两个切片底层指向同一数组
-	arr := [5]int{1, 3, 5, 7, 9}
-	sce1 := arr[0:4]
-	sce2 := sce1[0:3]
-	fmt.Println(sce1) // [1 3 5 7]
-	fmt.Println(sce2) // [1 3 5]
-	// 由于底层指向同一数组, 所以修改sce2会影响sce1
-	sce2[1] = 666
-	fmt.Println(sce1) // [1 666 5 7]
-	fmt.Println(sce2) // [1 666 5]
+	//arr := [5]int{1, 3, 5, 7, 9}
+	//sce1 := arr[0:4]
+	//sce2 := sce1[0:3]
+	//fmt.Println(sce1) // [1 3 5 7]
+	//fmt.Println(sce2) // [1 3 5]
+	//// 由于底层指向同一数组, 所以修改sce2会影响sce1
+	//sce2[1] = 666
+	//fmt.Println(sce1) // [1 666 5 7]
+	//fmt.Println(sce2) // [1 666 5]
+
+	//var arr []int
+	//arr[0] = 2 // panic: runtime error: index out of range [0] with length 0
+	//arr[1] = 4
+	//arr[2] = 6
+	//fmt.Println(arr) // [2 4 6]
+
+	//字符串的底层是[]byte数组, 所以字符也支持切片相关操作
+	//str := "abcdefg"
+	//// 通过字符串生成切片
+	//sce1 := str[3:]
+	//fmt.Println(sce1) // defg
+	//
+	//sce2 := make([]byte, 10)
+	//// 第二个参数只能是slice或者是数组
+	//// 将字符串拷贝到切片中
+	//copy(sce2, str)
+	//fmt.Println(sce2) //[97 98 99 100 101 102 103 0 0 0]
+
 }
 
 // 只要闭包还在使用外界的变量, 那么外界的变量就会一直存在⑦
