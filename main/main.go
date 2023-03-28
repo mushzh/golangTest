@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 func main() {
 
 	//num1 := 2
@@ -620,6 +622,30 @@ func main() {
 	//copy(sce2, str)
 	//fmt.Println(sce2) //[97 98 99 100 101 102 103 0 0 0]
 
+	//var dict = map[string]string{"name": "lnj", "age": "33", "gender": "male"}
+	//fmt.Println("删除前:", dict) // map[name:lnj age:33 gender:male]
+	//// 第一个参数: 被操作的字典
+	//// 第二个参数: 需要删除元素对应的key
+	//delete(dict, "name")
+	//fmt.Println("删除后:", dict) // map[age:33 gender:male]
+
+	//查询: 通过ok-idiom模式判断指定键值对是否存储
+	//var dict = map[string]string{"name": "lnj", "age": "33", "gender": "male"}
+	//value, ok := dict["age"]
+	//if ok {
+	//	fmt.Println("有age这个key,值为", value)
+	//} else {
+	//	fmt.Println("没有age这个key,值为", value)
+	//}
+	//if value, ok := dict["age"]; ok {
+	//	fmt.Println("有age这个key,值为", value)
+	//}
+
+	//注意: map和数组以及切片不同,map中存储的数据是无序的, 所以多次打印输出的顺序可能不同
+	var dict = map[string]string{"name": "lnj", "age": "33", "gender": "male"}
+	for key, value := range dict {
+		fmt.Println(key, value)
+	}
 }
 
 // 只要闭包还在使用外界的变量, 那么外界的变量就会一直存在⑦
