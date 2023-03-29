@@ -642,10 +642,41 @@ func main() {
 	//}
 
 	//注意: map和数组以及切片不同,map中存储的数据是无序的, 所以多次打印输出的顺序可能不同
-	var dict = map[string]string{"name": "lnj", "age": "33", "gender": "male"}
-	for key, value := range dict {
-		fmt.Println(key, value)
+	//var dict = map[string]string{"name": "lnj", "age": "33", "gender": "male"}
+	//for key, value := range dict {
+	//	fmt.Println(key, value)
+	//}
+
+	//var stu Student  // 相当于 var stu = Student{}
+	//fmt.Println(stu) // { 0}
+	//stu.name = "lnj" // 不会报错
+	//stu.age = 33
+	//fmt.Println(stu) // {lnj 33}
+
+	type Demo struct {
+		age int               // 基本のタイプ
+		arr [3]int            // 配列
+		sce []int             // スライス
+		mp  map[string]string // 辞書型を属性として使用します
+		stu Student           // 構造体
 	}
+
+	var d Demo = Demo{
+		33,
+		[3]int{1, 3, 5},
+		[]int{2, 4, 6},
+		map[string]string{"class": "one"},
+		Student{
+			"msz",
+			34,
+		},
+	}
+	fmt.Println(d) // {33 [1 3 5] [2 4 6] map[class:one] {msz 34}}
+}
+
+type Student struct {
+	name string
+	age  int
 }
 
 // 只要闭包还在使用外界的变量, 那么外界的变量就会一直存在⑦
