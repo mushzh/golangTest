@@ -653,31 +653,56 @@ func main() {
 	//stu.age = 33
 	//fmt.Println(stu) // {lnj 33}
 
-	type Demo struct {
-		age int               // 基本のタイプ
-		arr [3]int            // 配列
-		sce []int             // スライス
-		mp  map[string]string // 辞書型を属性として使用します
-		stu Student           // 構造体
-	}
+	//type Demo struct {
+	//	age int               // 基本のタイプ
+	//	arr [3]int            // 配列
+	//	sce []int             // スライス
+	//	mp  map[string]string // 辞書型を属性として使用します
+	//	stu Student           // 構造体
+	//}
+	//
+	//var d Demo = Demo{
+	//	33,
+	//	[3]int{1, 3, 5},
+	//	[]int{2, 4, 6},
+	//	map[string]string{"class": "one"},
+	//	Student{
+	//		"msz",
+	//		34,
+	//	},
+	//}
+	//fmt.Println(d) // {33 [1 3 5] [2 4 6] map[class:one] {msz 34}}
 
-	var d Demo = Demo{
-		33,
-		[3]int{1, 3, 5},
-		[]int{2, 4, 6},
-		map[string]string{"class": "one"},
-		Student{
-			"msz",
-			34,
-		},
-	}
-	fmt.Println(d) // {33 [1 3 5] [2 4 6] map[class:one] {msz 34}}
+	var arr [3]int = [3]int{1, 3, 5}
+	var p *[3]int
+	p = &arr
+
+	fmt.Printf("%p\n", &arr) // 0xc000010120
+	fmt.Printf("%p\n", p)    // 0xc000010120
+	fmt.Println(&arr)        // &[1 3 5]
+	fmt.Println(p)           // &[1 3 5]
+	// 指针指向数组之后操作数组的几种方式
+	// 1.直接通过数组名操作
+	arr[1] = 6
+	fmt.Println(arr[1])
+	// 2.通过指针间接操作
+	(*p)[1] = 7
+	fmt.Println((*p)[1])
+	fmt.Println(arr[1])
+	// 3.通过指针间接操作
+	p[1] = 8
+	fmt.Println(p[1])
+	fmt.Println(arr[1])
+	// 注意点: Go语言中的指针, 不支持+1 -1和++ --操作
+	//*(p + 1) = 9 // 报错
+	//fmt.Println(*p++) // 报错
+	fmt.Println(arr[1])
 }
 
-type Student struct {
-	name string
-	age  int
-}
+//type Student struct {
+//	name string
+//	age  int
+//}
 
 // 只要闭包还在使用外界的变量, 那么外界的变量就会一直存在⑦
 //func addUpper() func() int {
