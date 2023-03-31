@@ -673,30 +673,64 @@ func main() {
 	//}
 	//fmt.Println(d) // {33 [1 3 5] [2 4 6] map[class:one] {msz 34}}
 
-	var arr [3]int = [3]int{1, 3, 5}
-	var p *[3]int
-	p = &arr
+	//var arr [3]int = [3]int{1, 3, 5}
+	//var p *[3]int
+	//p = &arr
+	//
+	//fmt.Printf("%p\n", &arr) // 0xc000010120
+	//fmt.Printf("%p\n", p)    // 0xc000010120
+	//fmt.Println(&arr)        // &[1 3 5]
+	//fmt.Println(p)           // &[1 3 5]
+	//// 指针指向数组之后操作数组的几种方式
+	//// 1.直接通过数组名操作
+	//arr[1] = 6
+	//fmt.Println(arr[1])
+	//// 2.通过指针间接操作
+	//(*p)[1] = 7
+	//fmt.Println((*p)[1])
+	//fmt.Println(arr[1])
+	//// 3.通过指针间接操作
+	//p[1] = 8
+	//fmt.Println(p[1])
+	//fmt.Println(arr[1])
+	//// 注意点: Go语言中的指针, 不支持+1 -1和++ --操作
+	////*(p + 1) = 9 // 报错
+	////fmt.Println(*p++) // 报错
+	//fmt.Println(arr[1])
 
-	fmt.Printf("%p\n", &arr) // 0xc000010120
-	fmt.Printf("%p\n", p)    // 0xc000010120
-	fmt.Println(&arr)        // &[1 3 5]
-	fmt.Println(p)           // &[1 3 5]
-	// 指针指向数组之后操作数组的几种方式
-	// 1.直接通过数组名操作
-	arr[1] = 6
-	fmt.Println(arr[1])
-	// 2.通过指针间接操作
-	(*p)[1] = 7
-	fmt.Println((*p)[1])
-	fmt.Println(arr[1])
-	// 3.通过指针间接操作
-	p[1] = 8
-	fmt.Println(p[1])
-	fmt.Println(arr[1])
-	// 注意点: Go语言中的指针, 不支持+1 -1和++ --操作
-	//*(p + 1) = 9 // 报错
-	//fmt.Println(*p++) // 报错
-	fmt.Println(arr[1])
+	//per := Person{"msz", 34}
+	//fmt.Println(per) // {msz 34}
+	////　値渡しの場合、メソッド内での変更はメソッドの外側に影響しません
+	//per.setName("zs")
+	//fmt.Println(per) // {msz 34}
+	//p := &per
+	//// アドレス渡しを行うと、メソッド内での変更がメソッド外にも反映されます
+	//(*p).setAge(18)
+	//fmt.Println(per) // {msz 18}
+
+	// アドレス渡しのいくつかの呼び出し方法
+	per := Person{"msz", 34}
+	// 方法１：まずポインタを取得してからポインタ経由で呼び出す
+	p := &per
+	(*p).setAge(18)
+	fmt.Println(per) // {msz 18}
+	// 方法２：変数を直接利用して呼び出す。内部的には自動的に変数のアドレスが取得され、受信者に渡される
+	per.setAge(25)
+	fmt.Println(per) // {msz 25}
+
+}
+
+type Person struct {
+	name string
+	age  int
+}
+
+func (p Person) setName(name string) {
+	p.name = name
+}
+
+func (p *Person) setAge(age int) {
+	p.age = age
 }
 
 //type Student struct {
