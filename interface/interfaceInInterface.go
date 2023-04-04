@@ -74,7 +74,7 @@ type Person struct {
 }
 
 func (p Person) read() {
-	fmt.Println(p.name, "正在学习")
+	fmt.Println(p.name, "勉強中")
 }
 
 func main() {
@@ -92,7 +92,25 @@ func main() {
 	// 1.定义一个接口类型变量
 	var s studier
 	// 2.用接口类型变量接收实现了接口的结构体
-	s = Person{"lnj", 33}
+	s = Person{"msz", 34}
 	//s.name = "zs" // 报错, 由于s是接口类型, 所以不能访问属性
-	fmt.Println(s)
+	fmt.Println(s) // {msz 34}
+	//var p Person
+	//// インタフェース型を元の型に強制的に変換することはできません
+	//p = Person(s)
+
+	// ok-idiom
+	if p, ok := s.(Person); ok {
+		p.name = "lxo"
+		fmt.Println(p) // {lxo 34}
+	}
+
+	// type switch
+	switch p := s.(type) {
+	case Person:
+		p.name = "zs"
+		fmt.Println(p) // {zs 34}
+	default:
+		fmt.Println("Person型ではない")
+	}
 }
