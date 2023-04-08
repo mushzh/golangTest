@@ -54,6 +54,55 @@ func main() {
 	// 倒序查找`子串`在字符串第一次出现的位置, 找不到返回-1
 	res = strings.LastIndex("hello 李南江", "l")
 	fmt.Println(res) // 3
+
+	// 查找`子串`在字符串中是否存在, 存在返回true, 不存在返回false
+	// 底层实现就是调用strings.Index函数
+	resB := strings.Contains("hello 李南江", "llo")
+	fmt.Println(resB) // true
+	resB = strings.Contains("hello 李南江", "李")
+	fmt.Println(resB) // true
+
+	// 查找`汉字`OR`字符`在字符串中是否存在, 存在返回true, 不存在返回false
+	// 底层实现就是调用strings.IndexRune函数
+	resB = strings.ContainsRune("hello 李南江", 'l')
+	fmt.Println(resB) // true
+	resB = strings.ContainsRune("hello 李南江", '李')
+	fmt.Println(resB) // true
+
+	// 查找`汉字`OR`字符`中任意一个在字符串中是否存在, 存在返回true, 不存在返回false
+	// 底层实现就是调用strings.IndexAny函数
+	resB = strings.ContainsAny("hello 代码情缘", "wmhl")
+	fmt.Println(resB) // true
+
+	// 判断字符串是否已某个字符串开头
+	resB = strings.HasPrefix("lnj-book.avi", "lnj")
+	fmt.Println(resB) // true
+
+	// 判断字符串是否已某个字符串结尾
+	resB = strings.HasSuffix("lnj-book.avi", ".avi")
+	fmt.Println(resB) // true
+
+	// 比较两个字符串大小, 会逐个字符地进行比较ASCII值
+	// 第一个参数 > 第二个参数 返回 1
+	// 第一个参数 < 第二个参数 返回 -1
+	// 第一个参数 == 第二个参数 返回 0
+	resC := strings.Compare("bcd", "abc")
+	fmt.Println(resC) // 1
+	resC = strings.Compare("bcd", "bdc")
+	fmt.Println(resC) // -1
+	resC = strings.Compare("bcd", "bcd")
+	fmt.Println(resC) // 0
+
+	// 判断两个字符串是否相等, 可以判断字符和中文
+	// 判断时会忽略大小写进行判断
+	res2 := strings.EqualFold("abc", "def")
+	fmt.Println(res2) // false
+	res2 = strings.EqualFold("abc", "abc")
+	fmt.Println(res2) // true
+	res2 = strings.EqualFold("abc", "ABC")
+	fmt.Println(res2) // true
+	res2 = strings.EqualFold("代码情缘", "代码情缘")
+	fmt.Println(res2) // true
 }
 
 func custom(r rune) bool {
