@@ -103,6 +103,57 @@ func main() {
 	fmt.Println(res2) // true
 	res2 = strings.EqualFold("代码情缘", "代码情缘")
 	fmt.Println(res2) // true
+
+	str := "café"
+
+	// 将 ASCII 字符转换为大写字母
+	fmt.Println(strings.ToUpper(str)) // 输出: CAFÉ
+
+	// 将字符串中的所有字符转换为标题格式
+	fmt.Println(strings.ToTitle(str)) // 输出: CAFé　⇒　実際：CAFÉ
+
+	// 在 Go 1.2 中，ToUpper 和 ToTitle 函数输出的结果相同，都是 "CAFÉ"
+	// 但是，从 Go 1.3 开始，ToTitle 函数将根据语言规则处理字符，因此输出可能会有所不同。
+
+	// 将字符串转换为小写
+	res3 := strings.ToLower("ABC")
+	fmt.Println(res3) // abc
+
+	// 将单词首字母变为大写, 其它字符不变
+	// 单词之间用空格OR特殊字符隔开
+	res4 := strings.Title("hello world")
+	fmt.Println(res4) // Hello World
+
+	// 按照指定字符串切割原字符串
+	// 用,切割字符串
+	arr11 := strings.Split("a,b,c", ",")
+	fmt.Println(arr11) // [a b c]
+	arr21 := strings.Split("ambmc", "m")
+	fmt.Println(arr21) // [a b c]
+	// 按照指定字符串切割原字符串, 并且指定切割为几份
+	// 如果最后一个参数为0, 那么会范围一个空数组
+	arr3 := strings.SplitN("a,b,c", ",", 2)
+	fmt.Println(arr3) // [a b,c]
+	arr4 := strings.SplitN("a,b,c", ",", 0)
+	fmt.Println(arr4) // []
+	// 按照指定字符串切割原字符串, 切割时包含指定字符串
+	arr5 := strings.SplitAfter("a,b,c", ",")
+	fmt.Println(arr5) // [a, b, c]
+
+	// 按照指定字符串切割原字符串, 切割时包含指定字符串, 并且指定切割为几份
+	arr6 := strings.SplitAfterN("a,b,c", ",", 2)
+	fmt.Println(arr6) // [a, b,c]
+	// 按照空格切割字符串, 多个空格会合并为一个空格处理
+	arr7 := strings.Fields("a b c     d")
+	fmt.Println(arr7) // [a b c d]
+	// 将字符串转换成切片传递给函数之后由函数决定如何切割
+	// 类似于IndexFunc
+	arr8 := strings.FieldsFunc("aoboc", custom)
+	fmt.Println(arr8) // [a b c]
+	// 将字符串切片按照指定连接符号转换为字符串
+	sce := []string{"aa", "bb", "cc"}
+	str12 := strings.Join(sce, "-")
+	fmt.Println(str12) // aa-bb-cc
 }
 
 func custom(r rune) bool {
