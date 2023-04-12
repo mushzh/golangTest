@@ -154,6 +154,22 @@ func main() {
 	sce := []string{"aa", "bb", "cc"}
 	str12 := strings.Join(sce, "-")
 	fmt.Println(str12) // aa-bb-cc
+
+	// 返回count个s串联的指定字符串
+	str3 := strings.Repeat("abc", 2)
+	fmt.Println(str3) // abcabc
+	// 第一个参数: 需要替换的字符串
+	// 第二个参数: 旧字符串
+	// 第三个参数: 新字符串
+	// 第四个参数: 用新字符串 替换 多少个旧字符串
+	// 注意点: 传入-1代表只要有旧字符串就替换
+	// 注意点: 替换之后会生成新字符串, 原字符串不会受到影响
+	str5 := "abcdefabcdefabc"
+	str4 := strings.Replace(str5, "abc", "mmm", -1)
+	str6 := strings.Replace(str5, "abc", "mmm", 2)
+	fmt.Println(str5) // abcdefabcdefabc
+	fmt.Println(str4) // mmmdefmmmdefmmm
+	fmt.Println(str6) // mmmdefmmmdefabc
 }
 
 func custom(r rune) bool {
