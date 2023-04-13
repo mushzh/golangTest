@@ -170,6 +170,35 @@ func main() {
 	fmt.Println(str5) // abcdefabcdefabc
 	fmt.Println(str4) // mmmdefmmmdefmmm
 	fmt.Println(str6) // mmmdefmmmdefabc
+
+	// 去除字符串两端指定字符
+	str41 := strings.Trim("!!!abc!!!def!!!", "!")
+	fmt.Println(str41) // abc!!!def
+	// 去除字符串左端指定字符
+	str42 := strings.TrimLeft("!!!abc!!!def!!!", "!")
+	fmt.Println(str42) // abc!!!def!!!
+	// 去除字符串右端指定字符
+	str43 := strings.TrimRight("!!!abc!!!def!!!", "!")
+	fmt.Println(str43) // !!!abc!!!def
+	// // 去除字符串两端空格
+	str44 := strings.TrimSpace("    abc!!!def ")
+	fmt.Println(str44) // abc!!!def
+	// 按照方法定义规则,去除字符串两端符合规则内容
+	str45 := strings.TrimFunc("oooabcooodefooo", custom)
+
+	fmt.Println(str45) // abcooodef
+	// 按照方法定义规则,去除字符串左端符合规则内容
+	str46 := strings.TrimLeftFunc("oooabcooodefooo", custom)
+	fmt.Println(str46) // abcooodefooo
+	// 按照方法定义规则,去除字符串右端符合规则内容
+	str47 := strings.TrimRightFunc("oooabcooodefooo", custom)
+	fmt.Println(str47) // oooabcooodef
+	// 取出字符串开头的指定字符串
+	str48 := strings.TrimPrefix("lnj-book.avi", "lnj-")
+	fmt.Println(str48) // book.avi
+	// 取出字符串结尾的指定字符串
+	str49 := strings.TrimSuffix("lnj-book.avi", ".avi")
+	fmt.Println(str49) // lnj-book
 }
 
 func custom(r rune) bool {
