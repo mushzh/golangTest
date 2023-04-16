@@ -43,6 +43,23 @@ func main() {
 	fmt.Println(t.Hour())   // 20
 	fmt.Println(t.Minute()) // 30
 	fmt.Println(t.Second()) // 44
+
+	var k time.Time = time.Now()
+	fmt.Printf("今の時点は：%d-%d-%d %d:%d:%d¥n", k.Year(),
+		k.Month(), k.Day(), k.Hour(), k.Minute(), k.Second())
+
+	var dateStr = fmt.Sprintf("%d-%d-%d %d:%d:%d", k.Year(),
+		k.Month(), k.Day(), k.Hour(), k.Minute(), k.Second())
+	fmt.Println("今の時点は：", dateStr)
+
+	var t1 time.Time = time.Now()
+	// 2006/01/02 15:04:05这个字符串是Go语言规定的, 各个数字都是固定的 // 字符串中的各个数字可以只有组合, 这样就能按照需求返回格式化好的时间
+	str1 := t.Format("2006/01/02 15:04:05")
+	fmt.Println(str1)
+	str2 := t1.Format("2006/01/02")
+	fmt.Println(str2)
+	str3 := t1.Format("15:04:05")
+	fmt.Println(str3)
 }
 
 func findPhoneNumber(str string) bool {
