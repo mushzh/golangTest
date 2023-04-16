@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 	"strings"
+	"time"
 )
 
 func main() {
@@ -199,6 +201,11 @@ func main() {
 	// 取出字符串结尾的指定字符串
 	str49 := strings.TrimSuffix("lnj-book.avi", ".avi")
 	fmt.Println(str49) // lnj-book
+
+	// 创建随机数种子
+	rand.Seed(time.Now().UnixNano())
+	// 生成一个随机数
+	fmt.Println(rand.Intn(10))
 }
 
 func custom(r rune) bool {
