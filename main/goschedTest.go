@@ -31,9 +31,34 @@ func main() {
 	//dance()
 	// 并行: 可以边唱歌, 边跳舞
 	// 注意点: 主线程不能死, 否则程序就退出了
-	go sing()  // 开启一个协程
-	go dance() // 开启一个协程
+	//go sing()  // 开启一个协程
+	//go dance() // 开启一个协程
+	//for {
+	//
+	//}
+
+	// Goexit()
+	go func() {
+
+		fmt.Println("123")
+		// 退出当前协程
+		//runtime.Goexit()
+		// 退出当前函数
+		// Process finished with the exit code 0
+		//return
+		test()
+		fmt.Println("456")
+	}()
 	for {
 
 	}
+}
+
+func test() {
+	fmt.Println("abc")
+	// 只会结束当前函数，协程中的其他代码会继续执行
+	//return
+	// 会结束整个协程，goexit之后整个协程中的其他代码不会执行
+	//runtime.Goexit()
+	fmt.Println("def")
 }
