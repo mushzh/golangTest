@@ -40,6 +40,10 @@ func main() {
 	// Goexit()
 	go func() {
 
+		// cpu count
+		num := runtime.NumCPU()
+		fmt.Println(num)
+
 		fmt.Println("123")
 		// 退出当前协程
 		//runtime.Goexit()
